@@ -1,26 +1,8 @@
 <%- model_class = TodoItem -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
 
 <%= form_for [@todo_list, @todo_item] do |form| %>
-	<% if @todo_item.errors.any? %>
-		<div id="error_expl" class="panel panel-danger">
-			<div class="panel-heading">
-				<h3 class="panel-title"><%= pluralize(@todo_item.errors.count, "error") %> prohibited this todo item from being saved:</h3>
-			</div>
-			<div class="panel-body">
-				<ul>
-				<% @todo_item.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-				<% end %>
-				</ul>
-			</div>
-		</div>
-	<% end %>
-
-	<%= form.label :content %>
-	<%= form.text_field :content %>
-
-	<%= form.submit "Save" %>
+    <%= render partial: form %>
 <% end %>
